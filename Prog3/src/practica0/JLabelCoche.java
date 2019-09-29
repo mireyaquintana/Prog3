@@ -46,4 +46,5 @@ public class JLabelCoche extends JLabel{
 		g2.setComposite(AlphaComposite.getInstance( AlphaComposite.SRC_OVER, opacity));
 		g2.drawImage(imagenObjeto, 0, 0, ancho, alto, null);
 	}
+	
 }
