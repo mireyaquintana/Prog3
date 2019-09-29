@@ -25,13 +25,24 @@ public class JLabelCoche extends JLabel{
 		setBounds( 0, 0, ancho, alto );
 	}
 	
+	private double miGiro = Math.PI/2;
+	
+	public void setGiro( double gradosGiro ) {
+		// De grados a radianes...
+		miGiro = gradosGiro/180*Math.PI;
+		// El giro en la pantalla es en sentido horario (inverso):
+		miGiro = -miGiro;  // Cambio el sentido del giro
+		// Y el gráfico del coche apunta hacia arriba (en lugar de derecha OX)
+		miGiro = miGiro + Math.PI/2; // Sumo 90º para que corresponda al origen OX
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	
-		g2.rotate();
+		g2.rotate(miGiro, 50, 50);
 		g2.setComposite(AlphaComposite.getInstance( AlphaComposite.SRC_OVER, opacity));
 		g2.drawImage(imagenObjeto, 0, 0, ancho, alto, null);
 	}
