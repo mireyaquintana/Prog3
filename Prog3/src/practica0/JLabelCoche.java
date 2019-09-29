@@ -17,12 +17,12 @@ public class JLabelCoche extends JLabel{
 	protected float opacity = 1.0f;
 	private static final long serialVersionUID = 1L;
 	
-	public JLabelCoche(ImageIcon objetoGrafico, int ancho, int alto){
-		super( objetoGrafico );
-		this.ancho = ancho;
-		this.alto = alto;
-		imagenObjeto = objetoGrafico.getImage();
-		setBounds( 0, 0, ancho, alto );
+	public JLabelCoche(){
+		try {
+			setIcon(new ImageIcon(JLabelCoche.class.getResource("coche.png").toURI().toURL()));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	private double miGiro = Math.PI/2;

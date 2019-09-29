@@ -4,6 +4,14 @@ public class CocheJuego extends Coche{
 	
 	private JLabelCoche imgCoche;
 	
+	public CocheJuego(){
+		//imgCoche = new JLabelCoche();
+	}
+	
+	public JLabelCoche getGrafico(){
+		return imgCoche;
+	}
+	
 	@Override
 	public void setPosX(double posX){
 		super.setPosX(posX);
@@ -19,6 +27,6 @@ public class CocheJuego extends Coche{
 	@Override
 	public void setMiDireccionActual(double miDireccionActual){
 		super.setMiDireccionActual(miDireccionActual);
-		//terminar!!!!!!!!!!!
+		imgCoche.setGiro(miDireccionActual);
 	}
 }

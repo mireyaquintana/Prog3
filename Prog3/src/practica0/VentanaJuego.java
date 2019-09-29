@@ -2,12 +2,16 @@ package practica0;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class VentanaJuego extends JFrame{
+	
+	CocheJuego coche;
 	
 	public VentanaJuego(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -32,6 +36,44 @@ public class VentanaJuego extends JFrame{
 		//pPrincipal.add(pBotonera, BorderLayout.SOUTH);
 		add(pPrincipal, BorderLayout.CENTER);
 		add(pBotonera, BorderLayout.SOUTH);
+		
+		// EVENTOS 
+		// Botones
+		bAcelera.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				coche.acelera(+5);
+				System.out.println(coche.getMiVelocidad());
+			}
+		});
+		
+		bFrena.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				coche.acelera(-5);
+				System.out.println(coche.getMiVelocidad());
+			}
+		});
+		
+		bGiraIzq.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				coche.gira(+10);
+				System.out.println(coche.getMiDireccionActual());	
+			}
+		});
+		
+		bGiraDer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				coche.gira(-10);
+				System.out.println(coche.getMiDireccionActual());
+			}
+		});
 		
 		}
 	
