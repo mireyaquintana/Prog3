@@ -47,4 +47,5 @@ public class JLabelCoche extends JLabel{
 		g2.drawImage(imagenObjeto, 0, 0, ancho, alto, null);
 	}
 	
+	
 }
