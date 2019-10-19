@@ -78,6 +78,16 @@ public class ListaDeReproduccionTest {
 		// de ambas listas es el mismo
 		assertEquals(lr1.size(), lr2.size()-1);
 	}
+	
+	@Test 
+	public void addCarpetaTest() {
+		String carpetaTest = "test/res/";
+		String filtroTest = "*Pentatonix*.mp4"; 
+		
+		ListaDeReproduccion lr = new ListaDeReproduccion();
+		lr.add( carpetaTest, filtroTest );
+		fail( "Método sin acabar" );
+	} 
 
 	
 }
