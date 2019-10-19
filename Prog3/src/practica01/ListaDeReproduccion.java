@@ -2,6 +2,8 @@ package practica01;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
@@ -17,6 +19,8 @@ import javax.swing.event.ListDataListener;
 public class ListaDeReproduccion implements ListModel<String> {
 	ArrayList<File> ficherosLista;     // ficheros de la lista de reproducci�n
 	int ficheroEnCurso = -1;           // Fichero seleccionado (-1 si no hay ninguno seleccionado)
+	
+	private static Logger logger = Logger.getLogger( ListaDeReproduccion.class.getName() ); 
 	
 	/** Devuelve uno de los ficheros de la lista
 	 * @param posi	Posici�n del fichero en la lista (de 0 a size()-1)
@@ -42,7 +46,10 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public int add(String carpetaFicheros, String filtroFicheros) {
 		// TODO: Codificar este m�todo de acuerdo a la pr�ctica (pasos 3 y sucesivos)
+		logger.log( Level.INFO, "Añadiendo ficheros con filtro " + filtroFicheros ); // ANTES	
 		filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el s�mbolo de la expresi�n regular \. donde figure un .
+		filtroFicheros = filtroFicheros.replaceAll("\\*", ".*"); 
+		logger.log( Level.INFO, "Después de añadir ficheros con filtro " + filtroFicheros ); // DESPUÉS
 		return 0;
 	}
 	
@@ -190,4 +197,14 @@ public class ListaDeReproduccion implements ListModel<String> {
 	public void clear(){
 		ficherosLista.clear();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof ListaDeReproduccion){
+			ListaDeReproduccion l = (ListaDeReproduccion)obj;
+			return ficherosLista == l.ficherosLista;
+		}
+		return false;
+	}
+	
 }
