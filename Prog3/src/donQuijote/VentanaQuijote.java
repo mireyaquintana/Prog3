@@ -46,16 +46,37 @@ public class VentanaQuijote extends JFrame {
 				muevePagina( (spTexto.getHeight()-20) );
 			}
 		});
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e){
+				for(Thread t : hilosActivos){
+					t.interrupt();
+				}
+			}
+		});
 	}
 	
 	// NUEVO
 	// ESTRUCTURA DE DATOS
 	private ArrayList<Thread> hilosActivos = new ArrayList<>();
 	
+	private Thread hiloActual;
 	private void muevePagina( final int pixelsVertical ) {
 		// TODO Cambiar este comportamiento de acuerdo a los comentarios de la cabecera de clase
-		Thread hilo = new Thread(new Runnable(){
+		hiloActual = new Thread(new Runnable(){
+			
 			public void run(){
+				hilosActivos.add(hiloActual);
+				
+				// Antes de empezar a subir/bajar paginas, miro si la cola tiene algún otro hilo
+				while(hilosActivos.get(0) != hiloActual){ // si en primero en la cola no soy yo, espero
+					try {
+						Thread.sleep(10);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+				}
 				
 				JScrollBar bVertical = spTexto.getVerticalScrollBar();
 				System.out.println( "Moviendo texto de " + bVertical.getValue() + " a " + (bVertical.getValue()+pixelsVertical) );
@@ -81,13 +102,14 @@ public class VentanaQuijote extends JFrame {
 						}
 					}
 				}
+				hilosActivos.remove(0);
 		// hacemos un hilo porque no queremos que el hilo principal swing lo ejecute para que una de las acciones no deje de ejecutarse.
 		// po ejemplo si se esta pintando la pnatlalla no queremos que a su vez este pendiente de najar el texto.
 		
 			}
 			
 		});
-		hilo.start();
+		hiloActual.start();
 				
 		// NUEVO
 	}

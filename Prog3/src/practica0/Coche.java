@@ -65,6 +65,11 @@ public class Coche {
 	public void setPosY(double posY) {
 		this.posY = posY;
 	}
+	
+	public void setPosicion(double posX, double posY){
+		this.setPosX(posX);
+		this.setPosY(posY);
+	}
 
 	public String getPiloto() {
 		return piloto;

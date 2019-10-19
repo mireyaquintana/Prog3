@@ -2,6 +2,7 @@ package practica01;
 
 import java.io.File;
 import java.util.ArrayList;
+
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
@@ -151,10 +152,17 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 * @param posi2
 	 */
 	public void intercambia( int posi1, int posi2 ){
-		posi1 = posi2;
-		posi2 = posi1;
+		int pos1 = 0;
+		int pos2 = 0;
+		
+		pos1 = posi1;
+		pos2 = posi2;
+		
+		posi1 = pos2;
+		posi2 = pos1;
 	}
 	
+
 	/** Devuelve el número de elementos de la lista
 	 * @return
 	 */

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class VentanaJuego extends JFrame{
 	
 	CocheJuego coche;
+	JPanel pPrincipal;
 	
 	public VentanaJuego(){
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -19,7 +20,7 @@ public class VentanaJuego extends JFrame{
 		setSize(1000, 700);
 		setLocationRelativeTo(null);
 		
-		JPanel pPrincipal = new JPanel();
+		pPrincipal = new JPanel();
 		pPrincipal.setBackground(Color.WHITE);
 		pPrincipal.setLayout(null);
 		
@@ -77,13 +78,19 @@ public class VentanaJuego extends JFrame{
 		
 		}
 	
+	public void crearCoche(int posX, int posY){
+		coche = new CocheJuego();
+		coche.setPosicion(posX, posY);
+		pPrincipal.add(coche.getGrafico());
+	}
+	
 	public static void main(String[] args) {
 		VentanaJuego v = new VentanaJuego();
+		//Coche c1 = new Coche(miVelocidad, miDireccionActual, 150, 100, piloto);
+		//Coche coche = new Coche(100, 360, 150, 100, "piloto");
+		v.crearCoche(100, 100);
 		v.setVisible(true);
 		
-		//Coche c1 = new Coche(miVelocidad, miDireccionActual, 150, 100, piloto);
-		Coche coche = new Coche(100, 360, 150, 100, "piloto");
-		System.out.println(coche);
 	}
 	
 	
