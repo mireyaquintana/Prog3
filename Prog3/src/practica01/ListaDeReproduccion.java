@@ -143,7 +143,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 * 
 	 */
 	public ListaDeReproduccion() {
-		this.ficherosLista = null;
+		ficherosLista = new ArrayList<File>(); // Se inicializa la lista vacía 
 	}
 	
 	/** Intercambia las dos posiciones 
