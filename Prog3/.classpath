@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_202"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Documents/2º Universidad/Prog3/Librerías externas/vlcj-4.1.0/vlcj-4.1.0.jar" sourcepath="C:/Users/HP/Documents/2º Universidad/Prog3/Librerías externas/vlcj-4.1.0/vlcj-4.1.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/HP/Documents/2º%20Universidad/Prog3/Librerías%20externas/vlcj-4.1.0/vlcj-4.1.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
