@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
@@ -57,12 +59,34 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 * @return	N�mero de ficheros que han sido a�adidos a la lista
 	 */
 	public int add(String carpetaFicheros, String filtroFicheros) {
-		// TODO: Codificar este m�todo de acuerdo a la pr�ctica (pasos 3 y sucesivos)
-		logger.log( Level.INFO, "Añadiendo ficheros con filtro " + filtroFicheros ); // ANTES	
-		filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el s�mbolo de la expresi�n regular \. donde figure un .
-		filtroFicheros = filtroFicheros.replaceAll("\\*", ".*"); 
-		logger.log( Level.INFO, "Después de añadir ficheros con filtro " + filtroFicheros ); // DESPUÉS
-		return 0;
+		int ficherosAñadidos = 0;
+		if(carpetaFicheros != null){
+			// TODO: Codificar este m�todo de acuerdo a la pr�ctica (pasos 3 y sucesivos)
+			logger.log( Level.INFO, "Añadiendo ficheros con filtro " + filtroFicheros ); // ANTES
+			try {
+				filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el s�mbolo de la expresi�n regular \. donde figure un .
+				filtroFicheros = filtroFicheros.replaceAll("\\*", ".*"); 
+				logger.log( Level.INFO, "Después de añadir ficheros con filtro " + filtroFicheros ); // DESPUÉS
+				
+				Pattern pat = Pattern.compile(filtroFicheros);
+				File fInic = new File(carpetaFicheros);
+				if (fInic.isDirectory()) {
+					for( File f : fInic.listFiles() ) {
+						logger.log( Level.FINE, "Procesando fichero " + f.getName() );
+						// Comprobar que f.getName() cumple el patrón y añadirlo a la lista
+						if(pat.matcher(f.getName()).matches()){
+							// Añadir a la lista
+							ficherosAñadidos++;
+							ficherosLista.add(f);
+						}
+					}
+				 }
+			} catch (PatternSyntaxException e) {
+				logger.log( Level.SEVERE, "Error en patrón " + e );
+			}
+			
+		}
+		return ficherosAñadidos;
 	}
 	
 	
