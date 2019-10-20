@@ -96,8 +96,10 @@ public class VideoPlayer extends JFrame {
 				File fPath = pedirCarpeta();
 				if (fPath==null) return;
 				path = fPath.getAbsolutePath();
-				// TODO: pedir ficheros por ventana de entrada (JOptionPane)
-				// ficheros = ...
+				// PASO 8
+				// pedir ficheros por ventana de entrada (JOptionPane)
+				ficheros = JOptionPane.showInputDialog(null, "Nombre ficheros", "Selecciona ficheros", JOptionPane.QUESTION_MESSAGE);
+				
 				listaRepVideos.add( path, ficheros );
 				lCanciones.repaint();
 			}
@@ -198,7 +200,16 @@ public class VideoPlayer extends JFrame {
 	// Pide interactivamente una carpeta para coger v�deos
 	// (null si no se selecciona)
 	private static File pedirCarpeta() {
-		// TODO: Pedir la carpeta usando JFileChooser
+		//PASO 8
+		// Pedir la carpeta usando JFileChooser
+		File dirActual = new File(System.getProperty("user.dir"));
+		JFileChooser chooser = new JFileChooser(dirActual);
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal = chooser.showOpenDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			return chooser.getSelectedFile();
+		}
+		
 		return null;
 	}
 
